@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+ <head>
+  <link href="bootstrap/3.0.0/css/bootstrap.min.css"
+     rel="stylesheet">
+ </head>
+ <body>
+  <div class="container">
+   <div class="header">
+    <h3 class="text-muted">Recently Uploaded files</h3>
+   </div>
+   <hr/>
+   <div>
+   This is a list of the files you just uploaded, click on them to load/download them
+   <ul>
+    {% for file in filenames %}
+     <li><a href="{{url_for('uploaded', filename=file)}}">{{file}}</a></li>
+     <li><a href="{{url_for('load_csv', filename=file)}}">CSV Contents</a></li>
+     <!-- <li><a href="">{{file}}</a></li> -->
+    {% endfor %}
+   </ul>
+   <hr/>
+   <div>
+        <form action="/flask_mvp/upload_action" method="post" enctype="multipart/form-data">
+          <input type="file" multiple="" name="file[]" class="span3" /><br/>
+          <input type="submit" value="Upload" class="span2">
+        </form>
+  </div>
+  <div>
+       <form action="/flask_mvp/upload_display" method="get" enctype="multipart/form-data">
+       <input type="submit" value="List All Files" class="span2">
+       </form>
+ </div>
+   </div>
+  </div>
+ </body>
+</html>
