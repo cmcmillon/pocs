@@ -1,0 +1,68 @@
+
+
+<html lang="en">
+    <head>
+          <link href="bootstrap/3.0.0/css/bootstrap.min.css"
+        rel="stylesheet">
+    <style>
+    #block_container {
+        display: flex;
+        justify-content: left;
+    }
+    .floatedTable {
+            float:left;
+        }
+    .inlineTable {
+        display: inline-block;
+    }
+    .floatLeft { width: 50%; float: left; }
+    .floatRight {width: 51%; float: right; }
+    .container { overflow: hidden; }
+    </style>
+   </head>
+       <body>
+        <div class="container">
+         <div class="header">
+          <h3 class="text-muted">All Uploaded Files</h3>
+          <ul>
+          {{files_uploads}}
+          </ul>
+         </div>
+         <hr/>
+         <div>
+         <form action="/flask_mvp/upload_action" method="post" enctype="multipart/form-data">
+         <input type="file" multiple="" name="file[]" class="span3" /><br/>
+          <input type="submit" value="Upload" class="span2">
+         </form>
+         </div>
+        </div>
+        <div>
+             <form action="/flask_mvp/upload_display" method="get" enctype="multipart/form-data">
+             <input type="submit" value="List All Files" class="span2">
+             </form>
+       </div>
+       {%if not csv_table == " " %}
+           <div>
+                <form action="/flask_mvp/load_csv_stats/{{ csv_file|default('{{csv_file}}', true) }}" method="get" enctype="multipart/form-data">
+                <input type="submit" value="Load csv stats" class="span2">
+                </form>
+          </div>
+      {%endif %}
+
+        <hr/>
+        <div>
+
+            {{ csv_filename|default("{{csv_filename}}", true) }}
+
+        </div>
+
+        <div class="container">
+          <!-- <div class="floatLeft"> -->
+              {{ csv_table|default("{{csv_table}}", true) }}
+              {{ csv_stat_table|default("{{csv_stat_table}}", true) }}
+
+        </div>
+
+
+       </body>
+</html>

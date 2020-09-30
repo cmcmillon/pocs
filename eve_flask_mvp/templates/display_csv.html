@@ -1,0 +1,32 @@
+<html lang="en">
+    <head>
+          <link href="bootstrap/3.0.0/css/bootstrap.min.css"
+        rel="stylesheet">
+       </head>
+       <body>
+        <div class="container">
+         <div class="header">
+          <h3 class="text-muted">CSV Content</h3>
+          <ul>
+            {% for file in filenames %}
+             <li><a href="{{url_for('load_csv', filename=file)}}">{{file}}</a></li>
+             <!-- <li><a href="">{{file}}</a></li> -->
+             <!-- <form action="/flask_poc/uploads/{{file}}" method="post" enctype="multipart/form-data"> -->
+             <!-- <input type="file" multiple="" name="file[]" class="span3" /><br/> -->
+             <!-- <input type="submit" value="download" class="span2"> -->
+             <!-- </form> -->
+            {% endfor %}
+          </ul>
+         </div>
+         <hr/>
+         <!--
+         <div>
+         <form action="/flask_poc/csv_display_action" method="get" enctype="multipart/form-data">
+         <input type="file" multiple="" name="file[]" class="span3" /><br/>
+          <input type="submit" value="Display CSV" class="span2">
+         </form>
+         </div>
+         -->
+        </div>
+       </body>
+</html>
